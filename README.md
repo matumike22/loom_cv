@@ -1,16 +1,33 @@
-# loom_cv
+# CV Shift
 
-A new Flutter project.
+An app that helps you improve and tailor CVs using AI-powered suggestions and templates. It integrates with Firebase for authentication and storing user CVs, and provides tools to tweak, preview, and export CVs.
 
-## Getting Started
+## 🚀 Features
 
-This project is a starting point for a Flutter application.
+- AI-powered CV suggestions and phrasing improvements
+- Save and version CVs in Firebase Firestore
+- Sign-in with email (Firebase Auth)
+- Export CV as PDF
+- Simple, opinionated UI built with Flutter
 
-A few resources to get you started if this is your first Flutter project:
+## 🔧 Getting started
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Prerequisites:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Flutter (stable)
+- A Firebase project configured for this app
+
+Quick start:
+
+```bash
+flutter pub get
+flutter run
+```
+
+## 🤝 Contributing
+
+Contributions are welcome — open issues or PRs. Please run existing tests and follow the project's code style.
+
+## 📄 License
+
+This project is licensed under the MIT License.
