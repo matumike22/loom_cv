@@ -10,8 +10,15 @@ class AppTheme {
       scaffoldBackgroundColor: const Color(0xFF250A29),
       appBarTheme: const AppBarTheme(
         backgroundColor: Colors.transparent,
+        toolbarHeight: 80,
         scrolledUnderElevation: 0,
         foregroundColor: Colors.white,
+        titleTextStyle: TextStyle(
+          color: Colors.white,
+          fontSize: 22,
+          fontWeight: FontWeight.w600,
+        ),
+        centerTitle: false,
       ),
       textTheme: GoogleFonts.manropeTextTheme(ThemeData.dark().textTheme),
     );

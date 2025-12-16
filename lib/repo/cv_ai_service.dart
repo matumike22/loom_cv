@@ -103,7 +103,7 @@ OUTPUT FORMAT (must match exactly):
   /// Hard JSON sanitizer
   /// - Strips junk text
   /// - Extracts first valid JSON object
-  /// - Guarantees Map<String, dynamic>
+
   static Map<String, dynamic> _sanitizeJson(String input) {
     try {
       // Remove code blocks, markdown, etc.

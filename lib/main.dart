@@ -1,9 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:loom_cv/theme.dart';
 
 import 'firebase_options.dart';
 import 'pages/home_page.dart';
+import 'theme.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'LoomCV',
+      title: 'CVShift',
       theme: AppTheme().theme,
       debugShowCheckedModeBanner: false,
       home: HomePage(),

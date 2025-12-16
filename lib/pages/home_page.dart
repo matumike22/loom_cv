@@ -10,28 +10,46 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: AppBar(title: const Text('Home Page')),
-      body: GradientContainer(
-        child: Center(
-          child: ElevatedButton(
-            onPressed: () async {
-              final result = await CvAiService.generateCv(
-                userInfo: {
-                  "name": "Daniel Okoye",
-                  "email": "daniel.okoye@gmail.com",
-                  "telephone": "+2348012345678",
-                },
-                cvInfo:
-                    "Software engineer with 5 years of experience in Flutter and Firebase...",
-                jobDescription:
-                    "Senior Flutter Engineer with Firebase, CI/CD, fintech experience",
-                additionalInfo:
-                    "Built expense tracking app. Mentored juniors. Stripe & Paystack.",
-              );
+      appBar: AppBar(
+        title: const Text('LoomCV'),
 
-              debugPrint(result.toString());
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.info_outline),
+            onPressed: () {
+              // Action for info button
             },
-            child: Text('Press Me'),
+          ),
+          const SizedBox(width: 20),
+        ],
+      ),
+      body: GradientContainer(
+        child: SafeArea(
+          child: Column(
+            children: [
+              Center(
+                child: ElevatedButton(
+                  onPressed: () async {
+                    final result = await CvAiService.generateCv(
+                      userInfo: {
+                        "name": "Daniel Okoye",
+                        "email": "daniel.okoye@gmail.com",
+                        "telephone": "+2348012345678",
+                      },
+                      cvInfo:
+                          "Software engineer with 5 years of experience in Flutter and Firebase...",
+                      jobDescription:
+                          "Senior Flutter Engineer with Firebase, CI/CD, fintech experience",
+                      additionalInfo:
+                          "Built expense tracking app. Mentored juniors. Stripe & Paystack.",
+                    );
+
+                    debugPrint(result.toString());
+                  },
+                  child: Text('Press Me'),
+                ),
+              ),
+            ],
           ),
         ),
       ),
