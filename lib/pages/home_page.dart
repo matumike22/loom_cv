@@ -1,32 +1,38 @@
-import 'package:firebase_ai/firebase_ai.dart';
 import 'package:flutter/material.dart';
+import 'package:loom_cv/repo/cv_ai_service.dart';
+import 'package:loom_cv/widgets/gradient_container.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
+  static const String routeName = '/';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(title: const Text('Home Page')),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () async {
-            // Initialize the Gemini Developer API backend service
-            // Create a `GenerativeModel` instance with a model that supports your use case
-            final model = FirebaseAI.googleAI().generativeModel(
-              model: 'gemini-2.5-flash',
-            );
+      body: GradientContainer(
+        child: Center(
+          child: ElevatedButton(
+            onPressed: () async {
+              final result = await CvAiService.generateCv(
+                userInfo: {
+                  "name": "Daniel Okoye",
+                  "email": "daniel.okoye@gmail.com",
+                  "telephone": "+2348012345678",
+                },
+                cvInfo:
+                    "Software engineer with 5 years of experience in Flutter and Firebase...",
+                jobDescription:
+                    "Senior Flutter Engineer with Firebase, CI/CD, fintech experience",
+                additionalInfo:
+                    "Built expense tracking app. Mentored juniors. Stripe & Paystack.",
+              );
 
-            // Provide a prompt that contains text
-            final prompt = [
-              Content.text('Write a story about a magic backpack.'),
-            ];
-
-            // To generate text output, call generateContent with the text input
-            final response = await model.generateContent(prompt);
-            print(response.text);
-          },
-          child: Text('Press Me'),
+              debugPrint(result.toString());
+            },
+            child: Text('Press Me'),
+          ),
         ),
       ),
     );
