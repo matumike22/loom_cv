@@ -64,10 +64,11 @@ class LiquidButton extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              if (buttonIcon != null) ...[
+              if (buttonIcon != null)
                 Icon(buttonIcon, color: Colors.white, size: 20),
-                SizedBox(width: 8),
-              ],
+
+              if (buttonIcon != null && buttonText != null)
+                const SizedBox(width: 8),
 
               if (buttonText != null)
                 Text(

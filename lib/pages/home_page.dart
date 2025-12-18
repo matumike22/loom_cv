@@ -23,6 +23,15 @@ class HomePage extends StatelessWidget {
             height: 50,
             buttonText: "Create",
             buttonIcon: CupertinoIcons.plus,
+            onTap: () {
+              context.go('/add-cv');
+            },
+          ),
+          const SizedBox(width: 20),
+          LiquidButton(
+            width: 50,
+            height: 50,
+            buttonIcon: CupertinoIcons.person,
             onTap: () {},
           ),
           const SizedBox(width: 20),

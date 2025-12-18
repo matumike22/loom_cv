@@ -12,13 +12,11 @@ class CvAiService {
   /// Throws if AI returns unusable output
   static Future<Map<String, dynamic>> generateCv({
     required Map<String, dynamic> userInfo,
-    required String cvInfo,
     required String jobDescription,
     String? additionalInfo,
   }) async {
     final prompt = _buildPrompt(
       userInfo: userInfo,
-      cvInfo: cvInfo,
       jobDescription: jobDescription,
       additionalInfo: additionalInfo,
     );
@@ -35,7 +33,6 @@ class CvAiService {
   /// Prompt builder
   static String _buildPrompt({
     required Map<String, dynamic> userInfo,
-    required String cvInfo,
     required String jobDescription,
     String? additionalInfo,
   }) {
@@ -48,7 +45,7 @@ Generate a professional CV tailored specifically to the given job description.
 INPUT:
 
 Candidate information:
-${jsonEncode({...userInfo, 'cv_data': cvInfo, if (additionalInfo != null) 'additional_info': additionalInfo})}
+${jsonEncode({...userInfo, if (additionalInfo != null) 'additional_info': additionalInfo})}
 
 Target job description:
 ${jsonEncode({'job_description': jobDescription})}
@@ -67,36 +64,60 @@ RULES:
 OUTPUT FORMAT (must match exactly):
 
 {
-  "personal_info": {
-    "name": "",
+  "header": {
+    "full_name": "",
+    "location": "",
     "email": "",
-    "telephone": ""
+    "phone": "",
+    "linked_in": "",
+    "github": "",
+    "role": ""
   },
-  "summary": "",
-  "skills": [],
+
   "experience": [
     {
-      "title": "",
+      "role": "",
       "company": "",
-      "start_date": "",
-      "end_date": "",
-      "description": ""
+      "location": "",
+      "start_year": "",
+      "end_year": "",
+      "responsibilities": [
+        ""
+      ]
     }
   ],
+
   "projects": [
     {
       "name": "",
-      "description": ""
+      "context": "",
+      "year": "",
+      "highlights": [
+        ""
+      ]
     }
   ],
+
   "education": [
     {
       "degree": "",
       "institution": "",
-      "year": ""
+      "achievement": ""
+    }
+  ],
+
+  "skills": [
+    {
+      "category": "",
+      "items": [
+        ""
+      ]
     }
   ]
 }
+
+The skills section should categorize skills (e.g., Programming Languages, Frameworks, Leadership) and list relevant items under each category.
+
 ''';
   }
 

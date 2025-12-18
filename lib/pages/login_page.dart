@@ -21,6 +21,8 @@ class _LoginPageState extends State<LoginPage> {
   String? _email, _password;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  bool _isSignUp = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
               key: _formKey,
               child: LiquidContainer(
                 width: double.maxFinite,
-                height: 500,
+                height: 550,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -79,19 +81,58 @@ class _LoginPageState extends State<LoginPage> {
                       },
                       obscureText: true,
                       autocorrect: false,
-                      onSaved: (value) {
+                      onChanged: (value) {
                         _password = value;
                       },
                     ),
+                    const SizedBox(height: 20),
+                    if (_isSignUp)
+                      TextFormField(
+                        decoration: const InputDecoration(
+                          labelText: 'Confirm Password',
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter a valid password';
+                          }
+                          if (value != _password) {
+                            return 'Passwords do not match';
+                          }
+                          if (value.length < 8) {
+                            return 'Password must be at least 8 characters long';
+                          }
+
+                          return null;
+                        },
+                        obscureText: true,
+                        autocorrect: false,
+                        onSaved: (value) {
+                          _password = value;
+                        },
+                      ).animate().slideX(
+                        begin: 1.0,
+                        end: 0.0,
+                        curve: Curves.easeInOut,
+                        duration: 100.ms,
+                      ),
                     const SizedBox(height: 20),
 
                     LiquidButton(
                       width: double.maxFinite,
                       onTap: _submit,
-                      buttonText: 'Login',
+                      buttonText: _isSignUp ? 'Sign Up' : ' Login',
                     ),
                     const SizedBox(height: 20),
-                    TextButton(onPressed: () {}, child: const Text('Sign Up')),
+                    TextButton(
+                      onPressed: () => setState(() {
+                        _isSignUp = !_isSignUp;
+                      }),
+                      child: Text(
+                        _isSignUp
+                            ? 'Already have an account? Login'
+                            : 'Don\'t have an account? Sign Up',
+                      ),
+                    ),
                     const SizedBox(height: 20),
                     TextButton(
                       onPressed: () {},
@@ -117,7 +158,15 @@ class _LoginPageState extends State<LoginPage> {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       try {
-        showLoadingDialog(context, 'Logging in...');
+        showLoadingDialog(
+          context,
+          _isSignUp ? 'Signing up...' : 'Logging in...',
+        );
+
+        if (_isSignUp) {
+          await AuthRepo().registerWithEmailAndPassword(_email!, _password!);
+          return;
+        }
         await AuthRepo().signInWithEmailAndPassword(_email!, _password!);
       } catch (e) {
         if (mounted) {
