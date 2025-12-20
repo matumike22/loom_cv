@@ -18,7 +18,7 @@ class CvDataRepo {
     return _collection
         .where('userId', isEqualTo: userId)
         .orderBy('createdAt', descending: true)
-        .limit(10)
+        .limit(50)
         .snapshots()
         .map(
           (snapshot) => snapshot.docs

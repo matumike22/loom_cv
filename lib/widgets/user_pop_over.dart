@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:popover/popover.dart';
 
+import '../pages/set_account_page.dart';
 import 'liquid_button.dart';
 import 'liquid_container.dart';
 
@@ -85,7 +86,13 @@ class UserPopOver extends ConsumerWidget {
                   width: double.maxFinite,
                   height: 50,
                   buttonText: 'Edit',
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (ctx) => SetAccountPage(account: account),
+                      ),
+                    );
+                  },
                 ),
                 const SizedBox(height: 20),
                 LiquidButton(

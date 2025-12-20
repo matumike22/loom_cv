@@ -142,7 +142,6 @@ class _AddCvPageState extends State<AddCvPage> {
 
         final result = await CvAiService.generateCv(
           userInfo: account.toJson(),
-
           jobDescription: _jobDescription!,
           additionalInfo: _additionalInfo,
         );

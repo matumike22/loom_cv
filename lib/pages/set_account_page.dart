@@ -46,6 +46,7 @@ class _SetAccountPageState extends State<SetAccountPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
+      appBar: AppBar(),
       body: GradientContainer(
         child: SingleChildScrollView(
           child: CustomPadding(
@@ -59,7 +60,9 @@ class _SetAccountPageState extends State<SetAccountPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'Set up your account',
+                      widget.account != null
+                          ? 'Edit your account'
+                          : 'Set up your account',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -200,6 +203,7 @@ class _SetAccountPageState extends State<SetAccountPage> {
       await AccountRepo().setAccount(account);
       if (mounted) {
         Navigator.of(context).pop(); // Close loading dialog
+        if (widget.account != null) Navigator.of(context).pop();
       }
     } catch (e) {
       if (mounted) {

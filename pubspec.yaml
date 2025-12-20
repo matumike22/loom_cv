@@ -28,6 +28,7 @@ dependencies:
   pdf: ^3.11.3
   printing: ^5.14.2
   popover: ^0.4.0
+  flutter_native_splash: ^2.4.7
 
 dev_dependencies:
   flutter_test:
@@ -42,3 +43,9 @@ flutter:
   # assets:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
+
+flutter_native_splash:
+  color: '#250A29'
+  android: true
+  ios: true
+  web: true

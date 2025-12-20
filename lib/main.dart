@@ -26,7 +26,7 @@ class MyApp extends ConsumerWidget {
     final router = ref.watch(routerProvider);
 
     return MaterialApp.router(
-      title: 'CVShift',
+      title: 'CV Shift',
       theme: AppTheme().theme,
       themeMode: ThemeMode.dark,
       debugShowCheckedModeBanner: false,

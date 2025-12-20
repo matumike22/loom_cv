@@ -45,7 +45,17 @@ Generate a professional CV tailored specifically to the given job description.
 INPUT:
 
 Candidate information:
-${jsonEncode({...userInfo, if (additionalInfo != null) 'additional_info': additionalInfo})}
+${jsonEncode({...userInfo})}
+
+
+${additionalInfo != null ? '''
+- Additional_info is authoritative candidate data and MUST be used
+  to enhance experience, projects, skills, or responsibilities
+  when relevant.
+
+Additional Info: $additionalInfo
+''' : ''}
+
 
 Target job description:
 ${jsonEncode({'job_description': jobDescription})}
@@ -118,7 +128,7 @@ OUTPUT FORMAT (must match exactly):
 }
 
 company in header is the  company in the job description that I'm applying to.
-The skills section should categorize skills (e.g., Programming Languages, Frameworks, Leadership) and list relevant items under each category.
+The skills section should categorize skills (e.g., Programming Languages, Frameworks, Leadership) and list relevant items under each category. It should be concise and strongly related to the job only.
 
 ''';
   }

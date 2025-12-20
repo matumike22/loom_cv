@@ -11,13 +11,20 @@ class CvPdfPage {
     final skills = data?['skills'] as List? ?? [];
 
     final pdf = pw.Document();
+    final font = await PdfGoogleFonts.interRegular();
+    final boldFont = await PdfGoogleFonts.interSemiBold();
 
     pdf.addPage(
       pw.MultiPage(
         pageFormat: PdfPageFormat.a4,
         margin: const pw.EdgeInsets.all(32),
         theme: pw.ThemeData(
-          defaultTextStyle: const pw.TextStyle(fontSize: 11, lineSpacing: 1.15),
+          defaultTextStyle: pw.TextStyle(
+            fontSize: 10,
+            lineSpacing: 1.15,
+            font: font,
+            fontBold: boldFont,
+          ),
         ),
         build: (_) => [
           _header(header),
@@ -222,12 +229,12 @@ class CvPdfPage {
           children: [
             pw.Text(
               s['category'] ?? '',
-              style: pw.TextStyle(fontSize: 12, fontWeight: pw.FontWeight.bold),
+              style: pw.TextStyle(fontSize: 10, fontWeight: pw.FontWeight.bold),
             ),
             pw.Text(': '),
             pw.Expanded(
               child: pw.Wrap(
-                spacing: 8,
+                spacing: 4,
                 runSpacing: 4,
                 children: List.generate(
                   list.length,

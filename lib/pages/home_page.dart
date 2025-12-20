@@ -161,14 +161,21 @@ class HomePage extends ConsumerWidget {
                                     size: 20,
                                   ),
                                   const SizedBox(width: 8),
-                                  Text(
-                                    cvData.title,
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
+                                  Expanded(
+                                    child: Tooltip(
+                                      message: cvData.title,
+                                      child: Text(
+                                        cvData.title,
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
                                     ),
                                   ),
-                                  Spacer(),
+                                  SizedBox(width: 20),
                                   PopupMenuButton(
                                     itemBuilder: (context) => [
                                       PopupMenuItem(
