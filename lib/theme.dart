@@ -25,6 +25,9 @@ class AppTheme {
         ),
         centerTitle: false,
       ),
+      textSelectionTheme: TextSelectionThemeData(
+        selectionColor: Colors.purple.withValues(alpha: 0.2),
+      ),
       textTheme: GoogleFonts.manropeTextTheme(ThemeData.dark().textTheme),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,

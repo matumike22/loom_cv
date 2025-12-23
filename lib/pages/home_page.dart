@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
+import '../repo/cv_data_repo.dart';
 import '../repo/state_providers.dart';
 import '../widgets/cv_page.dart';
 import '../widgets/cv_pdf.dart';
@@ -177,6 +178,13 @@ class HomePage extends ConsumerWidget {
                                   ),
                                   SizedBox(width: 20),
                                   PopupMenuButton(
+                                    onSelected: (value) async {
+                                      if (value == 'delete') {
+                                        await CvDataRepo().deleteCvData(
+                                          cvData.id,
+                                        );
+                                      }
+                                    },
                                     itemBuilder: (context) => [
                                       PopupMenuItem(
                                         value: 'edit',

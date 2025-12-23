@@ -26,26 +26,28 @@ class CvPage extends StatelessWidget {
             padding: const EdgeInsets.all(48),
             child: DefaultTextStyle(
               style: TextStyle(color: Colors.black, fontSize: 12, height: 1.15),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _HeaderSection(header),
-                  const Divider(thickness: 2, color: Colors.black),
-                  const SizedBox(height: 12),
-                  _Section(
-                    title: 'Experience',
-                    child: _ExperienceSection(experience),
-                  ),
-                  _Section(
-                    title: 'Projects',
-                    child: _ProjectsSection(projects),
-                  ),
-                  _Section(
-                    title: 'Education',
-                    child: _EducationSection(education),
-                  ),
-                  _Section(title: 'Skills', child: _SkillsSection(skills)),
-                ],
+              child: SelectionArea(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _HeaderSection(header),
+                    const Divider(thickness: 2, color: Colors.black),
+                    const SizedBox(height: 12),
+                    _Section(
+                      title: 'Experience',
+                      child: _ExperienceSection(experience),
+                    ),
+                    _Section(
+                      title: 'Projects',
+                      child: _ProjectsSection(projects),
+                    ),
+                    _Section(
+                      title: 'Education',
+                      child: _EducationSection(education),
+                    ),
+                    _Section(title: 'Skills', child: _SkillsSection(skills)),
+                  ],
+                ),
               ),
             ),
           ),
